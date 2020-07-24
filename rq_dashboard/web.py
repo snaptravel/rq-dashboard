@@ -57,9 +57,6 @@ blueprint = Blueprint(
     "rq_dashboard", __name__, template_folder="templates", static_folder="static",
 )
 
-if current_app.config.get("RQ_DASHBOARD_USERNAME") and current_app.config.get("RQ_DASHBOARD_PASSWORD"):
-  add_basic_auth(blueprint, current_app.config.get("RQ_DASHBOARD_USERNAME"), current_app.config.get("RQ_DASHBOARD_PASSWORD"))
-
 @blueprint.before_app_first_request
 def setup_rq_connection():
     # we need to do It here instead of cli, since It may be embeded
